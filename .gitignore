@@ -1,0 +1,16 @@
+# terraform
+**/.terraform/*
+terraform/base_ac/terraform.tfvars
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+*.lock.hcl
+*.pem
+
+*.rpm
+sync-tasks
+zpa_nia/example/sync-tasks/*
+zpa_nia/example/terraform
+.DS_Store
+local_dev

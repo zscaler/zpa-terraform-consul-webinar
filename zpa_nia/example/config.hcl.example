@@ -1,0 +1,60 @@
+
+# Global Config Options
+log_level = "INFO"
+port = 8558
+working_dir = "sync-tasks"
+
+syslog {
+  enabled = false
+}
+
+buffer_period {
+  enabled = true
+  min = "5s"
+  max = "20s"
+}
+
+# Vault Config Options (Optional)
+# Only required if you are using Vault to retrieve ZPA API Credentials
+vault {}
+
+# Consul Config Options
+consul {
+  address = "${consul}:8500"
+}
+
+driver "terraform" {
+  log = true
+  required_providers {
+    zpa = {
+      source = "zscaler/zpa"
+    }
+  }
+}
+
+################################################################################
+# For Customer utilizing Vault to Store ZPA API Credentials, enable this field
+################################################################################
+terraform_provider "zpa" {
+  zpa_client_id = "{{ with secret \"zscaler/zpacloudprod\" }}{{ .Data.data.client_id }}{{ end }}"
+  zpa_client_secret = "{{ with secret \"zscaler/zpacloudprod\" }}{{ .Data.data.client_secret }}{{ end }}"
+  zpa_customer_id = "{{ with secret \"zscaler/zpacloudprod\" }}{{ .Data.data.customer_id }}{{ end }}"
+}
+
+/*
+terraform_provider "zpa" {
+  zpa_client_id       = "{{ env \"ZPA_CLIENT_ID\" }}"
+  zpa_client_secret   = "{{ env \"ZPA_CLIENT_SECRET\" }}"
+  zpa_customer_id     = "{{ env \"ZPA_CUSTOMER_ID\" }}"
+}
+*/
+task {
+  name = "zpa_application_segment"
+  description = "This task dynamically updates application segments domain names, tcp ports"
+  module = "../"
+  providers = ["zpa"]
+  condition "services" {
+    names = ["web"]
+  }
+  variable_files = ["./terraform.tfvars"]
+}

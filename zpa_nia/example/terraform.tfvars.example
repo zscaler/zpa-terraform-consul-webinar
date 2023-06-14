@@ -1,0 +1,21 @@
+## This is a sample terraform.tfvars file.
+## Uncomment and change the below variables according to your specific environment
+
+
+################################################################################
+# 1. Custom Segment Group Variables
+################################################################################
+byo_segment_group                              = true
+byo_segment_group_name                         = "${byo_segment_group_name}"
+
+################################################################################
+# 2. Custom Server Group Variables
+################################################################################
+byo_server_group                              = true
+byo_server_group_name                         = "${byo_server_group_name}"
+
+################################################################################
+# 3. Custom App Connector Group Variables Values
+################################################################################
+byo_app_connector_group      = true
+byo_app_connector_group_name = "${byo_app_connector_group_name}"
