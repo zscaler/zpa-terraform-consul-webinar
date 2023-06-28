@@ -11,7 +11,7 @@
 
 # Zscaler Private Access Terraform & Consul Webinar - Zero Touch App Delivery with ZPA, Terraform & Consul
 
-- This repository will provision Zscaler Private Access App Connector, Consul & NGINX servers in AWS. Optionally, you can also deploy a Vault Cluster in order to store the API credentials, so consul can retrieve it to authenticate to the ZPA Cloud.
+This repository will provision Zscaler Private Access App Connector, Consul & NGINX servers in AWS. Optionally, you can also deploy a Vault Cluster in store the API credentials, so Consul can authenticate to the ZPA Cloud.
 
 # Demo Video
 
@@ -43,9 +43,9 @@ To complete this tutorial, you need the following components as well as previous
 
 1. A Zscaler Private Access tenant
 2. Zscaler Private Access API Credentials. These credentials are used so that both Terraform and Consul-Terraform-Sync can authenticate to the ZPA cloud to create resources. If you don’t have ZPA API credentials, visit the Zscaler help portal or check out community article.
-3. A single Consul datacenter with server and client nodes, and the configuration directory for Consul agents at /etc/consul.d/.
-4. A running instance of the ZPA App Connector. If you don’t already, you can use the Terraform module provided in as part of this tutorial in order to deploy an App Connector VM based on Amazon Linux 2 instance (t2.micro). Visit help guide for more details.
-5. Standard web server running on a node, listening on HTTP port 80. You will use NGINX in this tutorial.
+3. A single Consul datacenter with server and client nodes, and the configuration directory for Consul agents at `/etc/consul.d/`.
+4. A running instance of the ZPA App Connector. If you don’t already, you can use the Terraform module provided in as part of this tutorial to deploy an App Connector VM based on Amazon Linux 2 instance (`t2.micro`).
+5. Standard web server running on a node, listening on HTTP port `80`. You will use NGINX in this tutorial.
 6. A server with Consul-Terraform-Sync (CTS) installed. This server requires communication to the Consul datacenter for automation between these two products.
 7. (Optional) A Server instance running Vault to store Zscaler’s API Credentials
 
@@ -61,14 +61,14 @@ To set up the environment in this repository, you must have the following pre-re
 
 This tutorial provides an example scenario that can be deployed in AWS using Terraform.
 
-- [Prerequisites](#prerequisites)
-- [Deploy infrastructure and register Consul services]()
-- [Configure CTS]()
-- [Start CTS]()
-- [Verify NIA automation workflow]()
-- [Clean your environment]()
+- [Clone example repository](#clone-example-repository)
+- [Provision Infrastructure](#provision-infrastructure)
+- [Configure CTS](#configure-cts)
+- [Start CTS](#start-cts)
+- [Verify NIA automation workflow](#verify-nia-automation-workflow)
+- [Clean your environment](#clean-your-environment)
 
-### Prerequisites
+### Clone example repository
 
 First, clone the repository.
 
@@ -591,7 +591,7 @@ Apply complete! Resources: 0 added, 1 changed, 0 destroyed.
 [INFO]  ctrl: start task monitoring
 ```
 
-### Verify CTS
+### Verify Zscaler resources
 
 Once all the components are deployed and connectivity is fully established, you can test access to the backend applications by connecting to the Zscaler infrastructure using the [Zscaler Client Connector Agent](https://help.zscaler.com/z-app/what-zscaler-app).
 
@@ -667,7 +667,7 @@ Review the [Secure CTS for Production tutorial](https://developer.hashicorp.com/
 
 For more info on Zscaler Private Access (ZPA), refer to the official [ZScaler documentation](https://help.zscaler.com/zpa).
 
-For more information about CTS, refer to the offical [CTS documentation](https://developer.hashicorp.com/consul/docs/nia).
+For more information about CTS, refer to the official [CTS documentation](https://developer.hashicorp.com/consul/docs/nia).
 
 #### Links and references
 
