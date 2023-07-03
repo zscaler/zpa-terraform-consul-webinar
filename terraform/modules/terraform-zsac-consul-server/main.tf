@@ -18,13 +18,34 @@ resource "aws_instance" "consul_server" {
   user_data                   = base64encode(var.user_data)
   associate_public_ip_address = true
 
+  connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    host        = self.public_ip
+    private_key = var.tls_private_key
+  }
+
+  provisioner "file" {
+    source      = "${path.module}/script.sh"
+    destination = "/tmp/script.sh"
+  }
+
+  provisioner "remote-exec" {
+    inline = ["cloud-init status --wait > /dev/null 2>&1"]
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/script.sh",
+      "sh /tmp/script.sh",
+    ]
+  }
+
   tags = {
     Name = "${var.name_prefix}-consul"
     Env  = "consul"
   }
 }
-
-
 
 ################################################################################
 # Create pre-defined AWS Security Groups and rules for Consul Server
