@@ -11,7 +11,7 @@
 
 # Zscaler Private Access Terraform & Consul Webinar - Zero Touch App Delivery with ZPA, Terraform & Consul
 
-This repository will provision Zscaler Private Access App Connector, Consul & NGINX servers in AWS. Optionally, you can also deploy a Vault Cluster in store the API credentials, so Consul can authenticate to the ZPA Cloud.
+This repository will provision Zscaler Private Access App Connector, Consul & NGINX servers in AWS. Optionally, you can also deploy a Vault Cluster to store your ZPA API credentials, so Consul can authenticate to the ZPA Cloud.
 
 # Demo Video
 
