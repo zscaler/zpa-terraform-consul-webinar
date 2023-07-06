@@ -467,7 +467,7 @@ The CTS execution will automatically create a new application segment within the
 
 ### Verify NIA automation workflow
 
-This scenario will trigger CTS by increasing the number of servers allocated to the autoscaling group. CTS will update the BIG-IP configuration to include the new NGINX instances created by increasing the autoscaling group capacity.
+This scenario will trigger CTS by increasing the number of servers allocated to the autoscaling group. CTS will update the ZPA application segment configuration to include the new NGINX instances created by increasing the autoscaling group capacity.
 
 In `/terraform/base_ac`, open the `terraform.tfvars` file and update the `desired capacity` and `max_size` values for the autoscaling group variables from `2` to `4`. The following snippet shows the original autoscaling group variables.
 
@@ -511,7 +511,7 @@ Apply complete! Resources: 3 added, 1 changed, 0 destroyed.
 
 Once the changes are applied on AWS, Consul will show the new instances on the **Services** tab.
 
-CTS will detect the change from the Consul catalog and modify the BIG-IP configuration to reflect the new `web-server` instances.
+CTS will detect the change from the Consul catalog and update the application segments to reflect the new `web` services.
 
 ```
 [INFO]  cli: v0.7.0 (e77f257)
