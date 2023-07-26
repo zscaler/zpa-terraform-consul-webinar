@@ -60,3 +60,8 @@ variable "consul_ami_id" {
   default     = ""
 }
 
+variable "tls_private_key" {
+  type        = string
+  description = "The tls private key used to SSH to public EC2 machines"
+  default     = ""
+}
