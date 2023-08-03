@@ -230,6 +230,8 @@ module "consul_server" {
   user_data                 = local.consulserveruserdata
   instance_type             = var.instance_type
   consul_ami_id             = local.ubuntu_ami_selected
+  tls_private_key           = tls_private_key.key.private_key_pem
+
   depends_on = [
     local_file.consul_server_user_data_file,
   ]
